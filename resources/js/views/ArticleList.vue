@@ -5,6 +5,18 @@
                 <h1>Article List</h1>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 text-right">
+                <label for="display-count">表示件数</label>
+                <select name="per-page" id="display-count" v-model="perPage" v-bind:checked="perPage"
+                    v-on:change="changePerPage">
+                    <option value="1">1</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+
+                </select>
+            </div>
+        </div>
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
@@ -43,20 +55,33 @@ export default {
     data: function () {
         return {
             articles: [],
-            currentPage: FIRST_PAGE_NUMBER,
-            perPage: DEFAULT_PER_PAGE,
+            currentPage: this.currentPage = this.$route.query.page || FIRST_PAGE_NUMBER,
+            perPage: this.perPage = this.$route.query.perPage || DEFAULT_PER_PAGE,
             // QUESTION 初期値は null 0 のどちらが良いのか?
             totalCount: 0,
         };
     },
     methods: {
+        changePerPage(e) {
+            // QUESTION 不正な値の挿入は気にしなくて良い?
+            //  [Laravel5のページング機能に表示件数の可変を実装する方法 - Qiita](https://qiita.com/qwe001/items/a82054b45acaca164d7c)
+            const changedPerPage = e.target.value;
+            if (["1", "10", "20"].includes(changedPerPage)) {
+                this.perPage = changedPerPage;
+            } else {
+                this.perPage = DEFAULT_PER_PAGE;
+            }
+            this.currentPage = 1;
+            this.$router.push({ name: 'articles', query: { perPage: this.perPage, page: this.currentPage, } })
+
+        },
         getArticles() {
-            axios.get(`/api/articles?page=${this.currentPage}`).then((res) => {
+            axios.get(`/api/articles`, { params: { perPage: this.perPage, page: this.currentPage } }).then((res) => {
                 const result = res.data;
                 this.currentPage = result.current_page;
                 this.perPage = result.per_page;
                 this.totalCount = result.total;
-                this.articles = res.data.data;
+                this.articles = result.data;
             });
         },
         paginateClickCallback: function (pageNum) {
