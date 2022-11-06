@@ -16,7 +16,9 @@ class ArticlesTableSeeder extends Seeder
             DB::table('articles')->insert([
                 [
                     'title' => 'タイトル' . $i,
-                    'body' => '内容' . $i
+                    'body' => '内容' . $i,
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
                 ],
             ]);
             $i++;

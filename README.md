@@ -1,27 +1,10 @@
 <!-- ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
-# My Laravel6 boilerplate
 
-This is my boilerplate of Laravel 6.20.26( with MySQL 5.7).
+# Introduction
 
-## Introduction
-<!-- 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
- -->
-
-<!-- ## Preinstalled Packages
-
-for Laravel
-|||
-|---------|----------|
-| doctrine/dbal| 2.* | -->
+This is sample repository of pagination with vuejs-pagination.
 
 ## Requirements
 
@@ -30,10 +13,9 @@ for Laravel
 macOS | BigSur |
 PHP |8.0.x|
 MySQL|5.7|
+Laravel|6.x|
 
 ## Setup
-
-TODO: vuexを追加する
 
 Firstly cloning this repository, and execute bellow commands in terminal.
 
@@ -49,6 +31,7 @@ Secondly, create a database and change `DB_DATABASE` in the `.env` file to the s
 
 And you can start developing immediately by running the following command.
 
+If you want to develop app with existing article table data, execute command `php artisan db:seed`.
 ## Operation check
 
 Execute the following commands in the terminal in separate tabs.
@@ -62,6 +45,7 @@ npm run watch;
 ```
 
 and access `localhost:8000` in Browser.
+
 <!-- 
 Ref:
 [Laravel 6系でmake:authを使う方法 - Qiita](https://qiita.com/rei67/items/d6d0f5f6e58edbb17c09)
