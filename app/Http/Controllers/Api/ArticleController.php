@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// use Illuminate\Database\Eloquent\Model;
 use App\Article;
 
 class ArticleController extends Controller
@@ -15,8 +16,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-        \Log::debug($articles);
+        $DEFAULT_PER_PAGE = 10;
+        $articles = Article::orderBy('created_at', 'desc')->paginate($DEFAULT_PER_PAGE);
         return response($articles, 200);
     }
 

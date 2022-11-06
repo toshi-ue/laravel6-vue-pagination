@@ -12,7 +12,7 @@ export default new Router({
     },
     {
         path: '/articles',
-        name: 'article.index',
+        name: 'articles',
         component: ArticleList
     },
     {
