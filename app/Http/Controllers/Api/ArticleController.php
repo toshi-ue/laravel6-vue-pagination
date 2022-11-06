@@ -14,10 +14,10 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $DEFAULT_PER_PAGE = 10;
-        $articles = Article::orderBy('created_at', 'desc')->paginate($DEFAULT_PER_PAGE);
+        $display_count = $request->perPage;
+        $articles = Article::orderBy('created_at', 'desc')->paginate($display_count);
         return response($articles, 200);
     }
 
